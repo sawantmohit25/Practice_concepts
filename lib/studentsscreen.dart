@@ -1,9 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:sembast_app/student_dao.dart';
-import 'package:sembast_app/studentmodel.dart';
+import 'package:sembast_app/provider/provider_userlist.dart';
+import 'package:sembast_app/sembast/student_dao.dart';
+import 'package:sembast_app/sembast/studentmodel.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:sembast_app/mobx/userlist.dart';
+
+/// On this Screen Sembast implementation is rendered and there are two floating buttons used to navigate to show mobx and provider implementation.
 class StudentsScreen extends StatefulWidget {
   @override
   _StudentsScreenState createState() => _StudentsScreenState();
@@ -27,6 +30,20 @@ class _StudentsScreenState extends State<StudentsScreen> {
   @override
   Widget build(BuildContext context) {
       return Scaffold(
+        floatingActionButton: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            FloatingActionButton(heroTag: 'btn1',child:Text('MobX'),
+              onPressed: (){
+                Navigator.push(context,MaterialPageRoute(builder:(context) =>UserList() ));
+              },
+            ),
+            SizedBox(width: 5.0),
+            FloatingActionButton(backgroundColor: Colors.red,heroTag: 'btn2',onPressed:(){
+              Navigator.push(context,MaterialPageRoute(builder:(context) =>ProviderList() ));
+            },child: Text('Provide'),)
+          ],
+        ),
       appBar: AppBar(
         centerTitle: true,
         title: Text('Students Information'),

@@ -1,7 +1,8 @@
 import 'package:sembast/sembast.dart';
-import 'package:sembast_app/databasesetup.dart';
-import 'package:sembast_app/studentmodel.dart';
+import 'package:sembast_app/sembast/databasesetup.dart';
+import 'package:sembast_app/sembast/studentmodel.dart';
 
+/// Data Access Object file created to perform CRUD operations on the sembast database created locally.
 class StudentDao{
   static const String folderName = "Students";
 
