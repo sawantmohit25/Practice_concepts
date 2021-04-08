@@ -7,7 +7,7 @@ import 'package:sembast_app/model_class/usermodel.dart';
 class ProviderList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Provider.of<ProviderResponse>(context).getData('https://jsonplaceholder.typicode.com/posts');
+   Provider.of<ProviderResponse>(context).getData('https://jsonplaceholder.typicode.com/posts');
     return Scaffold(
       appBar: AppBar(
         title: Text('Provider Implementation'),
