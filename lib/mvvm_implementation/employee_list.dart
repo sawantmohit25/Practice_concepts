@@ -16,7 +16,6 @@ class _EmployeeListState extends State<EmployeeList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:Colors.amberAccent,
       appBar: AppBar(
         title: Text('MVVM implemetation'),
         backgroundColor: Colors.amber,
@@ -27,6 +26,10 @@ class _EmployeeListState extends State<EmployeeList> {
           if(data.employeeList.isNotEmpty){
             return ListView.builder(itemCount:data.employeeList.length,itemBuilder:(context,index){
               return Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15.0),
+                ),
+                elevation: 10.0,
                 color:Colors.amberAccent,
                 child: ListTile(
                   leading:CircleAvatar(backgroundColor: Colors.amberAccent,child:Image.network(data.employeeList[index].avatar),),
@@ -43,7 +46,8 @@ class _EmployeeListState extends State<EmployeeList> {
             });
           }
           else{
-            return Center(child:CircularProgressIndicator(backgroundColor: Colors.white,),);
+            return Center(child:CircularProgressIndicator(valueColor: new AlwaysStoppedAnimation<Color>(Colors.white),
+            ),);
           }
         }),
       ),
