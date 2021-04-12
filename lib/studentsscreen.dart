@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:sembast_app/mvvm_implementation/employee_list.dart';
 import 'package:sembast_app/provider/provider_userlist.dart';
 import 'package:sembast_app/rxdart/rxdart_user_list.dart';
+import 'package:sembast_app/scoped_model/scoped_employee_list.dart';
 import 'package:sembast_app/sembast/student_dao.dart';
 import 'package:sembast_app/sembast/studentmodel.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -52,6 +53,10 @@ class _StudentsScreenState extends State<StudentsScreen> {
             FloatingActionButton(backgroundColor: Colors.green,heroTag: 'btn4',onPressed:(){
               Navigator.push(context,MaterialPageRoute(builder:(context) =>UsersList() ));
             },child: Text('RxDart'),),
+            SizedBox(height: 5.0),
+            FloatingActionButton(backgroundColor: Colors.teal,heroTag: 'btn5',onPressed:(){
+              Navigator.push(context,MaterialPageRoute(builder:(context) =>EmployeeDetails() ));
+            },child: Text('SCM'),),
           ],
         ),
       appBar: AppBar(
