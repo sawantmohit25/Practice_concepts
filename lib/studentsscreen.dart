@@ -19,13 +19,13 @@ class StudentsScreen extends StatefulWidget {
 
 class _StudentsScreenState extends State<StudentsScreen> {
   Widget portrait(var height,var width){
-    // Fluttertoast.showToast(
-    //     msg:'Portrait Mode',
-    //     toastLength: Toast.LENGTH_SHORT,
-    //     gravity: ToastGravity.BOTTOM,
-    //     backgroundColor: Colors.blue,
-    //     textColor: Colors.white
-    // );
+    Fluttertoast.showToast(
+        msg:'Portrait Mode',
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        backgroundColor: Colors.blue,
+        textColor: Colors.white
+    );
     return Scaffold(
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "363165662643",
+    "project_id": "fir-flutter-demo-7898d",
+    "storage_bucket": "fir-flutter-demo-7898d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:363165662643:android:2ad6a0f7cf208fecf19fc6",
+        "android_client_info": {
+          "package_name": "com.mohit.sembast_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "363165662643-sk97qgut41t8vv2m76k40qstiiu7tvq2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC5R7g5iCIZjnJI_zx89QrKlaKqKPiQ5MQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "363165662643-sk97qgut41t8vv2m76k40qstiiu7tvq2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
