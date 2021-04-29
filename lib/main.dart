@@ -8,6 +8,7 @@ import 'package:sembast_app/firebase_service/authentication.dart';
 import 'package:sembast_app/mvvm_implementation/employee_list.dart';
 import 'package:sembast_app/mvvm_implementation/employee_viewmodel.dart';
 import 'package:sembast_app/permission_screen.dart';
+import 'package:sembast_app/platform_specific/platform_specific.dart';
 import 'package:sembast_app/provider/provider_api_response.dart';
 import 'package:sembast_app/provider/provider_userlist.dart';
 import 'package:sembast_app/responsive_demo.dart';
@@ -41,7 +42,7 @@ class MyApp extends StatelessWidget {
     return StreamProvider<User>.value(value:AuthenticationService().user,
       child: MaterialApp(
         builder: DevicePreview.appBuilder, // Add the builder here
-        home:Wrapper(),
+        home:PlatformSpecific(),
         debugShowCheckedModeBanner: false,
       ),
     );
