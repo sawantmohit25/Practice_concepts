@@ -30,22 +30,26 @@ class MyApp extends StatelessWidget {
     //   home: EmployeeDetails(),
     //   debugShowCheckedModeBanner: false,
     // ));
-    // return MultiProvider(
-    //   providers: [
-    //     ChangeNotifierProvider<ProviderResponse>(
-    //       create: (context) => ProviderResponse(),
-    //     ),
-    //     ChangeNotifierProvider<EmployeeListViewModel>(
-    //       create: (context) => EmployeeListViewModel(),
-    //     )
-    //   ],
-    return StreamProvider<User>.value(value:AuthenticationService().user,
-      child: MaterialApp(
-        builder: DevicePreview.appBuilder, // Add the builder here
-        home:PlatformSpecific(),
-        debugShowCheckedModeBanner: false,
-      ),
-    );
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<ProviderResponse>(
+          create: (context) => ProviderResponse(),
+        ),
+        ChangeNotifierProvider<EmployeeListViewModel>(
+          create: (context) => EmployeeListViewModel(),
+        )
+      ],child:MaterialApp(
+      builder: DevicePreview.appBuilder,
+      home:EmployeeList(),
+      debugShowCheckedModeBanner: false,
+    ),);
+    // return StreamProvider<User>.value(value:AuthenticationService().user,
+    //   child: MaterialApp(
+    //     builder: DevicePreview.appBuilder, // Add the builder here
+    //     home:StudentsScreen(),
+    //     debugShowCheckedModeBanner: false,
+    //   ),
+    // );
     // void main() => runApp(
   // DevicePreview(
   //   builder: (context) => MyApp(), // Wrap your app
