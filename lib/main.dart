@@ -35,8 +35,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<ProviderResponse>(
           create: (context) => ProviderResponse(),
         ),
-        ChangeNotifierProvider<EmployeeListViewModel>(
-          create: (context) => EmployeeListViewModel(),
+        ChangeNotifierProvider<EmployeeListViewModel>.value(
+          // create: (context) => EmployeeListViewModel(),
+          value:EmployeeListViewModel(),
         )
       ],child:MaterialApp(
       builder: DevicePreview.appBuilder,

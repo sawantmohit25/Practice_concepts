@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sembast_app/mvvm_implementation/animation_employee_details.dart';
+import 'package:sembast_app/mvvm_implementation/custom_route_scaletransition.dart';
+import 'package:sembast_app/mvvm_implementation/custom_route_slidetransition.dart';
+import 'package:sembast_app/mvvm_implementation/employee_model.dart';
 import 'package:sembast_app/mvvm_implementation/employee_viewmodel.dart';
+import 'package:sembast_app/mvvm_implementation/route_animation_screen.dart';
 class EmployeeList extends StatefulWidget {
   @override
   _EmployeeListState createState() => _EmployeeListState();
 }
 
 class _EmployeeListState extends State<EmployeeList> {
+  List<Widget> _animatedList=[];
 
   final GlobalKey<AnimatedListState> _listKey=GlobalKey<AnimatedListState>();
 
@@ -17,14 +22,54 @@ class _EmployeeListState extends State<EmployeeList> {
 
   @override
   void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp)async{
+      List<EmployeeModel> providerValue=await Provider.of<EmployeeListViewModel>(context,listen: false).fetchUsers();
+      // var listValue=Provider.of<EmployeeListViewModel>(context,listen: false).employeeList;
+      addListItems(providerValue);
+         });
       Future.delayed(Duration(seconds: 3),(){
         setState(() {
           _opacity=1;
         });
       });
-   Provider.of<EmployeeListViewModel>(context,listen: false).fetchUsers();
     // TODO: implement initState
     super.initState();
+  }
+  Widget buildList(EmployeeModel element){
+    return Card(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15.0),
+      ),
+      elevation: 10.0,
+      color:Colors.amberAccent,
+      child: ListTile(
+        onTap: (){
+          Navigator.push(context, MaterialPageRoute(builder:(context) => EmployeeDetails(firstName:element.firstName,lastName:element.lastName,email:element.email,avatar:element.avatar,)));
+        },
+        leading:CircleAvatar(backgroundColor:Colors.amberAccent,child:Hero(tag:'image-${element.firstName}',child: Image.network(element.avatar,)),),
+        title: Row(
+          children: [
+            Text(element.firstName),
+            SizedBox(width: 5.0,),
+            Text(element.lastName),
+          ],
+        ),
+        subtitle: Text(element.email),
+      ),
+    );
+  }
+  void addListItems(List<EmployeeModel> data){
+    print('mand${data}');
+    Future ft =Future((){});
+    data.forEach(( EmployeeModel element) {
+      ft=ft.then((_){
+        return Future.delayed(const Duration(milliseconds:150),(){
+          _animatedList.add(buildList(element));
+          print('mandar${_animatedList}');
+          _listKey.currentState.insertItem(_animatedList.length-1);
+        });
+      });
+    });
   }
   @override
   Widget build(BuildContext context) {
@@ -39,45 +84,35 @@ class _EmployeeListState extends State<EmployeeList> {
           AnimatedOpacity(duration:Duration(seconds:3),opacity:_opacity,child: Text('Employees Information',style: TextStyle(color:Colors.black,fontSize: 30),)),
           SizedBox(height: 20,),
           Container(
-            child: Consumer<EmployeeListViewModel>(builder: (context,data,child){
-              if(data.employeeList.isNotEmpty){
-                return AnimatedList(
+            child:AnimatedList(
                   shrinkWrap: true,
                     key: _listKey,
-                    initialItemCount:data.employeeList.length,
+                    initialItemCount:_animatedList.length,
                     itemBuilder:(context,index,animation){
-                  return Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15.0),
-                    ),
-                    elevation: 10.0,
-                    color:Colors.amberAccent,
-                    child: SlideTransition(
-                      position:animation.drive(_offset),
-                      child: ListTile(
-                        onTap: (){
-                          Navigator.push(context, MaterialPageRoute(builder:(context) => EmployeeDetails(firstName:data.employeeList[index].firstName,lastName:data.employeeList[index].lastName,email:data.employeeList[index].email,avatar:data.employeeList[index].avatar,)));
-                        },
-                        leading:CircleAvatar(backgroundColor:Colors.amberAccent,child:Hero(tag:'image-${data.employeeList[index].firstName}',child: Image.network(data.employeeList[index].avatar,)),),
-                        title: Row(
-                          children: [
-                            Text(data.employeeList[index].firstName),
-                            SizedBox(width: 5.0,),
-                            Text(data.employeeList[index].lastName),
-                          ],
-                        ),
-                        subtitle: Text(data.employeeList[index].email),
-                      ),
-                    ),
+                  return SlideTransition(
+                    position:animation.drive(_offset),
+                    child:_animatedList[index],
                   );
-                });
-              }
-              else{
-                return Center(child:CircularProgressIndicator(valueColor: new AlwaysStoppedAnimation<Color>(Colors.yellow),
-                ),);
-              }
-            }),
+                }),
           ),
+          SizedBox(height:20),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              RaisedButton(
+                onPressed: (){
+                  Navigator.push(context,
+                      CustomScaleRoute(widget:RouteAnimationScreen()));
+                },
+              color:Colors.yellow,child: Text('Scale Transition'),),
+              RaisedButton(
+                onPressed: (){
+                  Navigator.push(context,
+                    CustomRoute(widget:RouteAnimationScreen()));
+                  },
+                color:Colors.yellow,child: Text('Slide Transition'),),
+            ],
+          )
         ],
       ),
     );
