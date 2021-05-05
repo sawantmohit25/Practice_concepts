@@ -5,6 +5,7 @@ import 'package:scoped_model/scoped_model.dart';
 import 'package:sembast_app/firebase_model/user_model.dart';
 import 'package:sembast_app/firebase_screens/Wrapper.dart';
 import 'package:sembast_app/firebase_service/authentication.dart';
+import 'package:sembast_app/local_notifications/local_notification.dart';
 import 'package:sembast_app/mvvm_implementation/employee_list.dart';
 import 'package:sembast_app/mvvm_implementation/employee_viewmodel.dart';
 import 'package:sembast_app/permission_screen.dart';
@@ -30,20 +31,26 @@ class MyApp extends StatelessWidget {
     //   home: EmployeeDetails(),
     //   debugShowCheckedModeBanner: false,
     // ));
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider<ProviderResponse>(
-          create: (context) => ProviderResponse(),
-        ),
-        ChangeNotifierProvider<EmployeeListViewModel>.value(
-          // create: (context) => EmployeeListViewModel(),
-          value:EmployeeListViewModel(),
-        )
-      ],child:MaterialApp(
-      builder: DevicePreview.appBuilder,
-      home:EmployeeList(),
+
+    // return MultiProvider(
+    //   providers: [
+    //     ChangeNotifierProvider<ProviderResponse>(
+    //       create: (context) => ProviderResponse(),
+    //     ),
+    //     ChangeNotifierProvider<EmployeeListViewModel>.value(
+    //       // create: (context) => EmployeeListViewModel(),
+    //       value:EmployeeListViewModel(),
+    //     )
+    //   ],child:MaterialApp(
+    //   builder: DevicePreview.appBuilder,
+    //   home:EmployeeList(),
+    //   debugShowCheckedModeBanner: false,
+    // ),);
+    return MaterialApp(
+      builder:DevicePreview.appBuilder,
+      home:LocalNotification(),
       debugShowCheckedModeBanner: false,
-    ),);
+    );
     // return StreamProvider<User>.value(value:AuthenticationService().user,
     //   child: MaterialApp(
     //     builder: DevicePreview.appBuilder, // Add the builder here
@@ -51,6 +58,7 @@ class MyApp extends StatelessWidget {
     //     debugShowCheckedModeBanner: false,
     //   ),
     // );
+
     // void main() => runApp(
   // DevicePreview(
   //   builder: (context) => MyApp(), // Wrap your app
