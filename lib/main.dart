@@ -8,6 +8,7 @@ import 'package:sembast_app/firebase_model/user_model.dart';
 import 'package:sembast_app/firebase_push_notifications/firebase_push_notification.dart';
 import 'package:sembast_app/firebase_screens/Wrapper.dart';
 import 'package:sembast_app/firebase_service/authentication.dart';
+import 'package:sembast_app/flutter_widgets/widgets_main.dart';
 import 'package:sembast_app/l10n.dart';
 import 'package:sembast_app/live_location/live_location.dart';
 import 'package:sembast_app/local_notifications/local_notification.dart';
@@ -22,6 +23,7 @@ import 'package:sembast_app/provider/provider_userlist.dart';
 import 'package:sembast_app/responsive_demo.dart';
 import 'package:sembast_app/scoped_model/scoped_employee_details.dart';
 import 'package:sembast_app/scoped_model/scoped_employee_list.dart';
+import 'package:sembast_app/sensors/sensors.dart';
 import 'package:sembast_app/studentsscreen.dart';
 
 void main() {
@@ -54,46 +56,46 @@ class MyApp extends StatelessWidget {
     //   debugShowCheckedModeBanner: false,
     // ),);
 
-    return ChangeNotifierProvider(
-            create: (context) => LocaleProvider(),
-    builder:(context,child){
-              final provider=Provider.of<LocaleProvider>(context);
-              return MaterialApp(
-                locale:provider.locale,
-                supportedLocales:L10n.all,
-                localizationsDelegates: [
-                  // THIS CLASS WILL BE ADDED LATER
-                  // A class which loads the translations from JSON files
-                  AppLocalizations.delegate,
-                  // Built-in localization of basic text for Material widgets
-                  GlobalMaterialLocalizations.delegate,
-                  // Built-in localization for text direction LTR/RTL
-                  GlobalWidgetsLocalizations.delegate,
-
-                ],
-                localeResolutionCallback: (locale, supportedLocales) {
-                  // Check if the current device locale is supported
-                  for (var supportedLocale in supportedLocales) {
-                    if (supportedLocale.languageCode == locale.languageCode &&
-                        supportedLocale.countryCode == locale.countryCode) {
-                      return supportedLocale;
-                    }
-                  }
-                  // If the locale of the device is not supported, use the first one
-                  // from the list (English, in this case).
-                  return supportedLocales.first;
-                },
-                home:Localization(),
-              );
-    },
-    );
-
-
-    // return MaterialApp(
-    //   builder:DevicePreview.appBuilder,
-    //   home:LiveLocation(),
-    //   debugShowCheckedModeBanner: false,
+    // return ChangeNotifierProvider(
+    //         create: (context) => LocaleProvider(),
+    // builder:(context,child){
+    //           final provider=Provider.of<LocaleProvider>(context);
+    //           return MaterialApp(
+    //             locale:provider.locale,
+    //             supportedLocales:L10n.all,
+    //             localizationsDelegates: [
+    //               // THIS CLASS WILL BE ADDED LATER
+    //               // A class which loads the translations from JSON files
+    //               AppLocalizations.delegate,
+    //               // Built-in localization of basic text for Material widgets
+    //               GlobalMaterialLocalizations.delegate,
+    //               // Built-in localization for text direction LTR/RTL
+    //               GlobalWidgetsLocalizations.delegate,
+    //
+    //             ],
+    //             localeResolutionCallback: (locale, supportedLocales) {
+    //               // Check if the current device locale is supported
+    //               for (var supportedLocale in supportedLocales) {
+    //                 if (supportedLocale.languageCode == locale.languageCode &&
+    //                     supportedLocale.countryCode == locale.countryCode) {
+    //                   return supportedLocale;
+    //                 }
+    //               }
+    //               // If the locale of the device is not supported, use the first one
+    //               // from the list (English, in this case).
+    //               return supportedLocales.first;
+    //             },
+    //             home:Localization(),
+    //           );
+    // },
     // );
+
+
+    return MaterialApp(
+      builder:DevicePreview.appBuilder,
+      home:MainWidget(),
+      debugShowCheckedModeBanner: false,
+    );
 
 
     // return StreamProvider<User>.value(value:AuthenticationService().user,
