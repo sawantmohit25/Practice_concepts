@@ -1,6 +1,7 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:sembast_app/app_localizations.dart';
@@ -9,6 +10,8 @@ import 'package:sembast_app/firebase_push_notifications/firebase_push_notificati
 import 'package:sembast_app/firebase_screens/Wrapper.dart';
 import 'package:sembast_app/firebase_service/authentication.dart';
 import 'package:sembast_app/flutter_widgets/widgets_main.dart';
+import 'package:sembast_app/getX/views/employee_list_view.dart';
+import 'package:sembast_app/getX/views/getx_route_view.dart';
 import 'package:sembast_app/l10n.dart';
 import 'package:sembast_app/live_location/live_location.dart';
 import 'package:sembast_app/local_notifications/local_notification.dart';
@@ -91,9 +94,9 @@ class MyApp extends StatelessWidget {
     // );
 
 
-    return MaterialApp(
+    return GetMaterialApp(
       builder:DevicePreview.appBuilder,
-      home:MainWidget(),
+      home:RouteView(),
       debugShowCheckedModeBanner: false,
     );
 
