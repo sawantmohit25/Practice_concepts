@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:sembast_app/app_localizations.dart';
+import 'package:sembast_app/coach_mark/coach_mark_impl.dart';
 import 'package:sembast_app/firebase_model/user_model.dart';
 import 'package:sembast_app/firebase_push_notifications/firebase_push_notification.dart';
 import 'package:sembast_app/firebase_screens/Wrapper.dart';
@@ -94,9 +95,9 @@ class MyApp extends StatelessWidget {
     // );
 
 
-    return GetMaterialApp(
+    return MaterialApp(
       builder:DevicePreview.appBuilder,
-      home:RouteView(),
+      home:CoachMarkScreen(),
       debugShowCheckedModeBanner: false,
     );
 
