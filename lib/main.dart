@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:sembast_app/app_localizations.dart';
+import 'package:sembast_app/audio_player/audio_player.dart';
 import 'package:sembast_app/coach_mark/coach_mark_impl.dart';
 import 'package:sembast_app/firebase_model/user_model.dart';
 import 'package:sembast_app/firebase_push_notifications/firebase_push_notification.dart';
@@ -97,7 +98,7 @@ class MyApp extends StatelessWidget {
 
     return MaterialApp(
       builder:DevicePreview.appBuilder,
-      home:CoachMarkScreen(),
+      home:AudioPlayerScreen(),
       debugShowCheckedModeBanner: false,
     );
 
