@@ -1,11 +1,13 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:sembast_app/app_localizations.dart';
 import 'package:sembast_app/audio_player/audio_player.dart';
+import 'package:sembast_app/audio_player/download_audio.dart';
 import 'package:sembast_app/coach_mark/coach_mark_impl.dart';
 import 'package:sembast_app/firebase_model/user_model.dart';
 import 'package:sembast_app/firebase_push_notifications/firebase_push_notification.dart';
@@ -31,7 +33,9 @@ import 'package:sembast_app/scoped_model/scoped_employee_list.dart';
 import 'package:sembast_app/sensors/sensors.dart';
 import 'package:sembast_app/studentsscreen.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await FlutterDownloader.initialize(debug: true);
   runApp(  DevicePreview(
     enabled: false,
     builder: (context) => MyApp(), // Wrap your app
@@ -98,7 +102,7 @@ class MyApp extends StatelessWidget {
 
     return MaterialApp(
       builder:DevicePreview.appBuilder,
-      home:AudioPlayerScreen(),
+      home:DownloadAudio(),
       debugShowCheckedModeBanner: false,
     );
 
