@@ -75,7 +75,7 @@ class _DownloadAudioState extends State<DownloadAudio> {
         label:Text('Open File'),
         icon:Icon(Icons.folder_open),
       ),
-      body:SingleChildScrollView(
+      body:progress==0||progress==100?SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.fromLTRB(20,10,20,0),
           child: Column(
@@ -124,6 +124,13 @@ class _DownloadAudioState extends State<DownloadAudio> {
             ],
           ),
         ),
+      ):Column(
+        mainAxisAlignment:MainAxisAlignment.center,
+        children: [
+          Text('Downloading ${progress}%....',style:TextStyle(fontSize:40),),
+          SizedBox(height: 20,),
+          CircularProgressIndicator(),
+        ],
       ),
     );
   }

@@ -32,15 +32,25 @@ import 'package:sembast_app/scoped_model/scoped_employee_details.dart';
 import 'package:sembast_app/scoped_model/scoped_employee_list.dart';
 import 'package:sembast_app/sensors/sensors.dart';
 import 'package:sembast_app/studentsscreen.dart';
+import 'package:sembast_app/video_player/chewie_list_screen.dart';
+import 'package:sembast_app/video_player/video_player.dart';
 
-void main() async{
-  WidgetsFlutterBinding.ensureInitialized();
-  await FlutterDownloader.initialize(debug: true);
-  runApp(  DevicePreview(
-    enabled: false,
-    builder: (context) => MyApp(), // Wrap your app
-  ),);
+
+//For Flutter Downloader package the below settings in void main
+// void main() async{
+//   WidgetsFlutterBinding.ensureInitialized();
+//   await FlutterDownloader.initialize(debug: true);
+//   runApp(  DevicePreview(
+//     enabled: false,
+//     builder: (context) => MyApp(), // Wrap your app
+//   ),);
+// }
+
+void main(){
+  runApp(MyApp());
 }
+
+
 class MyApp extends StatelessWidget {
   // final ScopedDetails scopedDetails=ScopedDetails();
   @override
@@ -101,8 +111,9 @@ class MyApp extends StatelessWidget {
 
 
     return MaterialApp(
-      builder:DevicePreview.appBuilder,
-      home:DownloadAudio(),
+      theme:ThemeData.dark().copyWith(accentColor:Colors.white),
+      // builder:DevicePreview.appBuilder,
+      home:ChewieListScreen(),
       debugShowCheckedModeBanner: false,
     );
 

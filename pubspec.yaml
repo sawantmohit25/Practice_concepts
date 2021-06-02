@@ -55,6 +55,7 @@ dependencies:
   tutorial_coach_mark: ^0.6.0+1
   audioplayers: ^0.17.4
   flutter_downloader: ^1.5.2
+  video_player: ^1.0.1
 
 
 
@@ -70,6 +71,7 @@ flutter_icons:
 dev_dependencies:
   build_runner: any
   mobx_codegen: any
+  chewie: ^0.12.2
   flutter_test:
     sdk: flutter
 
@@ -95,6 +97,7 @@ flutter:
      - assets/faded.mp3
      - assets/fadedimage.jpg
      - assets/musicplayer.png
+     - assets/yt_logo.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
